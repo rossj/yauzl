@@ -281,8 +281,8 @@ CentralDirectoryEntryParser.prototype.parse = function(callback) {
     // 42 - Relative offset of local file header
     entry.relativeOffsetOfLocalHeader = buffer.readUInt32LE(42);
 
-    if (entry.generalPurposeBitFlag & 0x40) {
-      return this.fail(new Error("strong encryption is not supported"));
+    if (entry.generalPurposeBitFlag & 0x2000) {
+      return this.fail(new Error("Central Directory encryption is not supported"));
     }
 
     this.entry = entry;
